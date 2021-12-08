@@ -14,16 +14,16 @@ class Game:
     
     def checkInput(self, choice):
         if choice > 5 or choice < 1:
-            message = print("Number is out of range")
+            message = print("Number is out of range\n")
             self.leave = 0
             return self.leave
         else:
             if choice == self.answer:
-                message = print("Great guess!")
+                message = print(f"Great guess {player.name}!\n")
                 self.leave = 1
                 return self.leave
             else:
-                message = print("Sorry worng answer try again")
+                message = print("Sorry wrong answer try again\n")
                 self.leave = 0
                 return self.leave
     
@@ -31,20 +31,25 @@ class Game:
         self.getRandomNumber()
         game = True
         while game:
-            message = print("You have 3 tries to guess the right number")
+            userName = str(input("Please let us know your name:  "))
+            player = User(userName)
+            message = print("You have 3 tries to guess the right number\n")
             round = [1,2,3]
-            if r == 1 or 2:
-                message = print(f"Round {r}")
-                choice = input(f"Please pick a number between 1 and 5")
-                choice = choice.split()
-                self.checkInput(int(choice[0]))
-            else:
-                message = print(f"Round {r}")
-                choice = input(f"Please pick a number between 1 and 5")
-                choice = choice.split()
-                self.checkInput(int(choice[0]))
-                if self.leave == 1:
-                    game = False
-        message = print(f"Sorry out of rounds")
-        self.leave = 1
-        game = False
+            for r in round:
+                if r == 1 or 2:
+                    message = print(f"Round {r}")
+                    choice = input(f"{player.name}, please pick a number between 1 and 5\n")
+                    choice = choice.split()
+                    self.checkInput(int(choice[0]))
+                    if self.leave == 1:
+                        game = False
+                else:
+                    message = print(f"Round {r}")
+                    choice = input(f"Please pick a number between 1 and 5\n")
+                    choice = choice.split()
+                    self.checkInput(int(choice[0]))
+                    if self.leave == 1:
+                        game = False
+            message = print(f"Sorry out of rounds\n")
+            self.leave = 1
+            game = False
