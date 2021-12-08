@@ -19,7 +19,6 @@ while playing:
     clear()
     message = print(f"{welcome}")
     message = print(f"The current time is {currentTime}")
-    clear()
     message = str(input(f"{day} \n"))
     message = input(f"\nWould you like to play a game?\n")
     if message[0] == 'n':
